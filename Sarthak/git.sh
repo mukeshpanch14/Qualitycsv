@@ -1,3 +1,3 @@
-git add Sarthak
-git commit -am "Sarthak"
-git push
+git add .
+git commit -m "Changed"
+git push origin master
