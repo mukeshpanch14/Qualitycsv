@@ -1,6 +1,7 @@
 aaagkjlgh
 asdasd
 <<<<<<< HEAD
+<<<<<<< HEAD
 afasdf
 asdasd
 <<<<<<< master
@@ -12,3 +13,8 @@ sarthak
 >>>>>>> refs/heads/master
 =======
 >>>>>>> 75e9d45 mukesh
+=======
+afasdffgh
+asdasd
+sarthak
+>>>>>>> refs/remotes/origin/master
