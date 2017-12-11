@@ -1,7 +1,7 @@
 from random import *
 import random
 import string
-file = open('data.csv','w')
+file = open('data.csv', 'w')
 input=int(input('Please input amount of rows : '))
 for p in range(input):
   z=''
