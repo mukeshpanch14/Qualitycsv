@@ -89,6 +89,7 @@ class ReadModule(object):
 
           if i>self.header_pos and i<self.footer_pos:          #Picks data based on file
             row = list(row[r] for r in self.col_pos)
+            #print(row)
             df = df.append(pd.Series(row),ignore_index=True)   #Dataframe append
           i=i+1
     except Exception as e:
@@ -101,8 +102,15 @@ a = ReadModule('file.csv',1,0,',','\'')
 header = a.header_func()
 #print(header)
 #a.count()
-df = a.read_file([0,2],'postion')
-print(type(df))
-print(df)
+df = a.read_file()
+print(type(df[0]))
+#print(df[0].values)
+print('**************************')
+#print(type(df[0][1]))
+df[0]=df[0].astype(int)
+df[3]=df[3].astype(int)
+#print(type(df[0][1]))
+#print(type(df[3][1]))
+print(df.groupby([2])[3].sum())
 
 
