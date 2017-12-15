@@ -98,19 +98,12 @@ class ReadModule(object):
     return df
     
 a = ReadModule('file.csv',1,0,',','\'')
-#print(a)
 header = a.header_func()
-#print(header)
-#a.count()
 df = a.read_file()
 print(type(df[0]))
-#print(df[0].values)
 print('**************************')
-#print(type(df[0][1]))
 df[0]=df[0].astype(int)
 df[3]=df[3].astype(int)
-#print(type(df[0][1]))
-#print(type(df[3][1]))
 print(df.groupby([2])[3].sum())
 
 
