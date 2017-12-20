@@ -5,7 +5,7 @@ class ReadModule(object):
 
   ###INIT STARTS###
   
-  def __init__(self,filename,header_count,footer_count,delimiter,quote=''):
+  def __init__(self,filename,header_count,footer_count,delimiter,quote=''): #Default quotes is none
     self.filename = filename
     self.header_count = header_count
     self.footer_count = footer_count
@@ -100,10 +100,11 @@ class ReadModule(object):
 a = ReadModule('file.csv',1,0,',','\'')
 header = a.header_func()
 df = a.read_file()
-print(type(df[0]))
+print(df)
 print('**************************')
 df[0]=df[0].astype(int)
 df[3]=df[3].astype(int)
-print(df.groupby([2])[3].sum())
+a = df.groupby([2])[3].count()
+print(a)
 
 
