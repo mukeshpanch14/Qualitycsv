@@ -96,15 +96,5 @@ class ReadModule(object):
       print('Error in read_file function : ' + str(e) )
       raise
     return df
-    
-a = ReadModule('file.csv',1,0,',','\'')
-header = a.header_func()
-df = a.read_file()
-print(df)
-print('**************************')
-df[0]=df[0].astype(int)
-df[3]=df[3].astype(int)
-a = df.groupby([2])[3].count()
-print(a)
 
 
