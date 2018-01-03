@@ -1,3 +1,5 @@
+
+"""Internal package for locking files"""
 import fcntl
 
 import time
