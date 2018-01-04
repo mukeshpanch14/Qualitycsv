@@ -3,8 +3,12 @@
 import fcntl
 
 import time
-x = open('file.csv','w+')
+x = open('file.csv','a')
 fcntl.flock(x, fcntl.LOCK_EX | fcntl.LOCK_NB)
+x.write('12010207\n')
+time.sleep(20)
 
-time.sleep(60)
-#to unlock--      fcntl.flock(d, fcntl.LOCK_UN)
+   
+#to unlock-- 
+fcntl.flock(x, fcntl.LOCK_UN)
+
