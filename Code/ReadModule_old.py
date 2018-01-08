@@ -60,6 +60,7 @@ class ReadModule(object):
     return self.header
   
   ###READ FUNCTION TO RETURN THE DATAFRAME###
+  
   def read_file(self,col_list=[],header_flag='columns'):    #No arguments needed unless specified
     
     try:
@@ -76,22 +77,24 @@ class ReadModule(object):
           reader = csv.reader(file, delimiter=self.delimiter, quotechar=self.quote)
 
         i=0
-        self.col_names=[]
+        self.col_pos=[]
         for row in reader:
-          if i==self.header_pos and header_flag!='columns':   #if column postions are given
-            for item in col_list:
-              for q in range(len(self.header_func())):
-                if str(q) in str(item):
-                  self.col_names.append(str(row[q]))
-            i=i+1
-          elif header_flag=='columns':
-            self.col_names=col_list
+          if i==self.header_pos and header_flag=='columns':   #Sets columns to pick
+              for item in col_list:
+                for q in range(len(self.header_func())):
+                  if str(row[q]) in str(item):
+                    self.col_pos.append(q)
+          elif header_flag!='columns':
+            self.col_pos=col_list
 
-      df = pd.read_csv(self.filename,skipinitialspace=True, usecols=self.col_names)
-      print(self.header_pos)
-      print(self.footer_pos)
-      return df[self.header_pos:self.footer_pos-1]
-            
+          if i>self.header_pos and i<self.footer_pos:          #Picks data based on file
+            row = list(row[r] for r in self.col_pos)
+            #print(row)
+            df = df.append(pd.Series(row),ignore_index=True)   #Dataframe append
+          i=i+1
     except Exception as e:
       print('Error in read_file function : ' + str(e) )
       raise
+    return df
+
+
