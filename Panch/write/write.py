@@ -1,6 +1,5 @@
 import csv
 import os
-import datetime
 import fcntl
 import errno
 
