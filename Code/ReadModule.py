@@ -47,7 +47,7 @@ class ReadModule(object):
           i=0
           for line in file.readlines():
             if i == self.header_pos:  #If in header row
-              header_string = line.rstrip() #strips \n 
+              header_string =pytho line.rstrip() #strips \n 
             i=i+1
         header_list = header_string.split(self.delimiter)  #strips by delimiter
         self.header = []
