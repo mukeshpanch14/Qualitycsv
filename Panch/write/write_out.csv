@@ -1,0 +1,4 @@
+Rule Id,Run Date,Run Time,Subject Area,Rule Name,Rule Sub Ctgy,Rule Description,Attribute Name,File Name,Success Flag,Result Flag,Error Reason
+123,04101995,05:58:20,Inventory,First Rule,1Sub Ctgy,Description,Attrib,File_name,1,123,No Error
+123,04101996,05:58:20,Inventory,First Rule,1Sub Ctgy,Description,Attrib,File_name,1,123,No Error
+123,04101996,05:58:20,Inventory,First Rule,1Sub Ctgy,Description,Attrib,write_out.csv,1,123,No Error
