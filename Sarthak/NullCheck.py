@@ -14,19 +14,9 @@ class NullCheck(object):
     j=0
     null_lines = []
     for col in self.col_list:
-      for data in self.df[col]:
-        #print(data)
-        if(data):
-          i=i+1
-          j=j+1
-          null_lines.append(i)
-          
-        else:
-          i=i+1
-    if(j==0):
-      print('No nulls present')
-    else:
-      print('Nulls present')
-      print(null_lines)
-      print(j)
-    
+      if(math.isnan(self.df[col].min())):
+        print('Null')
+        print(self.df[col].min())
+      else:
+        print('Not Null')
+        print(self.df[col].min())
