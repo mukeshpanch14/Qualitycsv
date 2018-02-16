@@ -4,50 +4,55 @@ import fcntl
 import errno
 import time
 
-file_name='write_out.csv'
-header_data=[['Rule Id','Run Date','Run Time','Subject Area','Rule Name','Rule Sub Ctgy','Rule Description','Attribute Name','File Name','Success Flag','Result Flag','Error Reason']]
-myData=[[123,'04101996','05:58:20','Inventory','First Rule','1Sub Ctgy','Description','Attrib',file_name,1,123,'No Error']]
-
 class WriteModule(object):
+  
+    #setting up init variables
+  def __init__(self,file_name,header_data,myData): #Default quotes is none
+    self.file_name = file_name
+    self.header_data = header_data
+    self.myData = myData
+    
+    #Main Write function to write into file
+  def write(self):
+    
+    t=os.path.isfile(self.file_name) #checking if file exists
+    #print(t)
 
-  t=os.path.isfile('write_out.csv')
-  print(t)
+    if t: #file exists
+        #print("File Present")
+        myFile=open(self.file_name,'a')
 
-  if t:
-      print("File Present")
-      myFile=open(file_name,'a')
+        while True: #Loop unless broken
+          try:
+              fcntl.flock(myFile, fcntl.LOCK_EX | fcntl.LOCK_NB)
+              writer = csv.writer(myFile)
+              writer.writerows(self.myData)
+              fcntl.flock(myFile, fcntl.LOCK_UN)
+              break
+          except IOError as e:
+              # raise on unrelated IOErrors       
+              if e.errno != errno.EAGAIN:
+                  raise
+              else:
+                  time.sleep(0.1) #loop continues with sleep
 
-      while True:
-        try:
-            fcntl.flock(myFile, fcntl.LOCK_EX | fcntl.LOCK_NB)
-            writer = csv.writer(myFile)
-            writer.writerows(myData)
-            fcntl.flock(myFile, fcntl.LOCK_UN)
-            break
-        except IOError as e:
-            # raise on unrelated IOErrors       
-            if e.errno != errno.EAGAIN:
-                raise
-            else:
-                #time.sleep(0.1)
-                print('Other error')
-  else:
-      print("File Absent")
-      myFile=open(file_name,'a')
+    else: #file does not exist
+        #print("File Absent")
+        myFile=open(self.file_name,'a')
 
-      while True:
-        try:
-            fcntl.flock(myFile, fcntl.LOCK_EX | fcntl.LOCK_NB)
-            writer = csv.writer(myFile)
-            writer.writerows(header_data)
-            writer.writerows(myData)
-            fcntl.flock(myFile, fcntl.LOCK_UN)
-            break
-        except IOError as e:
-            # raise on unrelated IOErrors       
-            if e.errno != errno.EAGAIN:
-                raise
-            else:
-                time.sleep(0.1)
+        while True: #Loop 
+          try:
+              fcntl.flock(myFile, fcntl.LOCK_EX | fcntl.LOCK_NB)
+              writer = csv.writer(myFile)
+              writer.writerows(self.header_data) #print header into new file before data
+              writer.writerows(self.myData)
+              fcntl.flock(myFile, fcntl.LOCK_UN)
+              break
+          except IOError as e:
+              # raise on unrelated IOErrors       
+              if e.errno != errno.EAGAIN:
+                  raise
+              else:
+                  time.sleep(0.1) #go to sleep and continue loop
     
 
