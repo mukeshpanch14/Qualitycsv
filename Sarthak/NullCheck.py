@@ -5,7 +5,7 @@ import math
 
 class NullCheck(object):
   
-  def __init__(self,df,col_list=[]):
+  def __init__(self,df,col_list=[]): #dataframe and column list to check for nulls
     self.col_list=col_list
     self.df= df
     
@@ -14,9 +14,9 @@ class NullCheck(object):
     j=0
     null_lines = []
     for col in self.col_list:
-      if(math.isnan(self.df[col].min())):
+      if(math.isnan(self.df[col].min())):  #datafrane function
         print('Null')
-        print(self.df[col].min())
+        print(self.df[col].min())   #remove prints to writemodule
       else:
         print('Not Null')
-        print(self.df[col].min())
+        print(self.df[col].min())   #remove prints to writemodule
