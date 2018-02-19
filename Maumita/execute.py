@@ -1,6 +1,6 @@
 import ReadModule as RM
 import NullCheck as NC
-import Duplicate as D
+import DuplicateCheck as D
 #import pandas as pd
 #import csv
 
