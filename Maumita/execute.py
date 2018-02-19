@@ -1,5 +1,5 @@
 import ReadModule as RM
-import NullCheck as NC
+#import NullCheck as NC
 import DuplicateCheck as D
 #import pandas as pd
 #import csv
