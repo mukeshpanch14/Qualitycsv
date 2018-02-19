@@ -15,6 +15,7 @@ class NullCheck(object):
     null_lines = []
     for col in self.col_list:
       if(math.isnan(self.df[col].min())):  #datafrane function
+        ####ADD LINE NUMBER###
         print('Null')
         print(self.df[col].min())   #remove prints to writemodule
       else:
