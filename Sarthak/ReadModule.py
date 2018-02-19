@@ -38,7 +38,7 @@ class ReadModule(object):
   
   ###HEADER FUNCTION TO RETURN THE HEADER###
   
-  def header_func(self):  ##Returns header as a list of columns
+  def getHeader(self):  ##Returns header as a list of columns
     
     try:
       header = []
@@ -67,7 +67,7 @@ class ReadModule(object):
       if len(col_list)==0 and self.header_count==0:        #Setting the arguments
         col_list = []
       elif len(col_list)==0 and self.header_count>0:
-        col_list = self.header_func()                     #Gets the header by default
+        col_list = self.getHeader()                     #Gets the header by default
 
       with open(self.filename) as file:
         if self.quote=='':                                  #Sets the quote
@@ -80,7 +80,7 @@ class ReadModule(object):
         for row in reader:
           if i==self.header_pos and header_flag!='columns':   #if column postions are given
             for item in col_list:
-              for q in range(len(self.header_func())):
+              for q in range(len(self.getHeader())):
                 if str(q) in str(item):
                   self.col_names.append(str(row[q]))
             i=i+1
