@@ -1,11 +1,39 @@
 ##Start
 import pandas as pd
+import datetime as dt
 
 class DataTypeCheck(object):
   
-  def __init__(self,df,data_dict):
+  def __init__(self,df,data_dict,date_format=""):
     self.df=df
     self.data_dict=data_dict
+    self.date_format=date_format
+    self.dataframe=pd.DataFrame()
+    self.formats=[]
+    self.date_dict={'DD/MM/YYYY':'%d/%m/%Y'}
+    self.fmts=[]
+    
+  def checkDate(self,date):
+    
+    if(self.date_format):
+      for key,value in self.date_dict.items():
+        try:
+           t=dt.datetime.strptime(date, value)
+           if key not in self.formats:
+            self.formats.append(key)
+           break
+        except ValueError as err:
+           pass
+
+  def checkFormat(self,fmts):
+    #print(fmts)
+    if(len(fmts)==0):
+      print('Date format not in list')
+    elif(len(fmts)>1):
+      print('Multiple date formats found')
+    else:
+      if(fmts[0]==self.date_format):
+        print('Date format matches : {0}'.format(fmts[0]))
     
   def checkDataType(self):
     
@@ -30,14 +58,18 @@ class DataTypeCheck(object):
            print(('{0} - Not Matched as {1}').format(data,self.data_dict[data]))
     
       elif(self.data_dict[data][0:4]=='date'):
-        self.df[data] = pd.to_datetime(self.df[data])
-        datatype=str(self.df[data].dtype)
+        self.dataframe['date'] = pd.to_datetime(self.df[data])
+        datatype=str(self.dataframe['date'].dtype)
         #print(str(self.df[data].dtype))
         if(len(datatype)>10):
-          print('inloop')
-          print(datatype[0:10])
           if(datatype[0:10]=='datetime64'):
             print(('{0} - Matched as {1}').format(data,self.data_dict[data]))
+            for datesInDataframe in self.df[data]:
+              for date in datesInDataframe.splitlines():
+                #print(date)
+                self.checkDate(date)
+            #print(self.formats)
+            self.checkFormat(self.formats)
           else:
             print(('{0} - Not Matched as {1}').format(data,self.data_dict[data]))
         

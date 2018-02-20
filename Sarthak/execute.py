@@ -21,6 +21,6 @@ write = WM.WriteModule(file_name,header_data,myData)
 #write.write()
 print('**************************')
 #print(df['DOB'].dtype)
-data={'Emp_Name':'string','Emp_Id':'string','DOB':'date:MM/DD/YYYY'}
-dataType = DTC.DataTypeCheck(df,data)
+data={'Emp_Name':'string','Emp_Id':'string','DOB':'date'}
+dataType = DTC.DataTypeCheck(df,data,'DD/MM/YYYY')
 dataType.checkDataType()
