@@ -10,7 +10,7 @@ class DataTypeCheck(object):
     self.date_format=date_format
     self.dataframe=pd.DataFrame()
     self.formats=[]
-    self.date_dict={'DD/MM/YYYY':'%d/%m/%Y'}
+    self.date_dict={'DD/MM/YYYY':'%d/%m/%Y','DD-MM-YYYY':'%d-%m-%Y'}
     self.fmts=[]
     
   def checkDate(self,date):
@@ -23,7 +23,7 @@ class DataTypeCheck(object):
             self.formats.append(key)
            break
         except ValueError as err:
-           pass
+           self.data_format_err=1
 
   def checkFormat(self,fmts):
     #print(fmts)
@@ -31,6 +31,8 @@ class DataTypeCheck(object):
       print('Date format not in list')
     elif(len(fmts)>1):
       print('Multiple date formats found')
+    elif(self.data_format_err==1):
+      print('Date format doesnot match')
     else:
       if(fmts[0]==self.date_format):
         print('Date format matches : {0}'.format(fmts[0]))
