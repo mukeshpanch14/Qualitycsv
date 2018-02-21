@@ -3,10 +3,11 @@ import ReadModule as RM
 import DuplicateCheck as D
 #import pandas as pd
 #import csv
+import HeaderChecker as H
 
 #a = RM.ReadModule('file.csv',1,0,',','\'')
 a = RM.ReadModule('file.csv',1,0,',','\'')
-#header = a.header_func()
+header = a.header_func()
 df = a.read_file(['Emp_Id','Emp_Name','City','DOB'])
 #print('**************************')
 #print(df)
@@ -15,3 +16,5 @@ df = a.read_file(['Emp_Id','Emp_Name','City','DOB'])
 #rule_nullcheck.checkNull()
 dup=D.Duplicate(df,col_list=['Emp_Name','City'])
 dup.duplicate()
+hc=H.Header(['Emp_Id','Emp_Name','City','DOB'],header)
+hc.HeaderCheck()
