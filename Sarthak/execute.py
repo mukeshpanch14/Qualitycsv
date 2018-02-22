@@ -21,6 +21,6 @@ file_name='write_out.csv'
 #write.write(myData)
 print('**************************')
 #print(df['DOB'].dtype)
-#data={'Emp_Name':'string','Emp_Id':'string','DOB':'date'}
-#dataType = DTC.DataTypeCheck(df,data,'DD/MM/YYYY')
-#dataType.checkDataType()
+data={'Emp_Name':'string','Emp_Id':'string','DOB':'date'}
+dataType = DTC.DataTypeCheck(df,data,'DD/MM/YYYY')
+dataType.checkDataType()

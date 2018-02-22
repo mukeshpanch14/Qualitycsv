@@ -1,6 +1,7 @@
 ##Start
 import pandas as pd
 import datetime as dt
+from globalVar import *
 
 class DataTypeCheck(object):
   
@@ -10,7 +11,7 @@ class DataTypeCheck(object):
     self.date_format=date_format
     self.dataframe=pd.DataFrame()
     self.formats=[]
-    self.date_dict={'DD/MM/YYYY':'%d/%m/%Y','DD-MM-YYYY':'%d-%m-%Y'}
+    self.date_dict=global_dateDict
     self.fmts=[]
     
   def checkDate(self,date):

@@ -1,1 +1,2 @@
-header = [['Rule Id','Run Date','Run Time','Subject Area','Rule Name','Rule Sub Ctgy','Rule Description','Attribute Name','File Name','Success Flag','Result Flag','Error Reason']]
+global_header = [['Rule Id','Run Date','Run Time','Subject Area','Rule Name','Rule Sub Ctgy','Rule Description','Attribute Name','File Name','Success Flag','Result Flag','Error Reason']]
+global_dateDict = {'DD/MM/YYYY':'%d/%m/%Y','DD-MM-YYYY':'%d-%m-%Y'}

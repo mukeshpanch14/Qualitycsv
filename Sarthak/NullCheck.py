@@ -3,14 +3,14 @@ import WriteModule as WM
 import pandas as pd
 import math
 import WriteModule as WM
-from globalVar import header
+from globalVar import *
 
 class NullCheck(object):
   
   def __init__(self,df,col_list=[]): #dataframe and column list to check for nulls
     self.col_list=col_list
     self.df= df
-    self.header = header
+    self.header = global_header
     #header = [['Rule Id','Run Date','Run Time','Subject Area','Rule Name','Rule Sub Ctgy','Rule Description','Attribute Name','File Name','Success Flag','Result Flag','Error Reason']]
     self.writeModule = WM.WriteModule('write_out.csv',self.header)
         
