@@ -7,13 +7,15 @@ import time
 class WriteModule(object):
   
     #setting up init variables
-  def __init__(self,file_name,header_data,myData): #Default quotes is none
+  def __init__(self,file_name,header_data): #Default quotes is none
     self.file_name = file_name
     self.header_data = header_data
-    self.myData = myData
+    #self.myData = myData
     
     #Main Write function to write into file
-  def write(self):
+  def write(self,myData):
+    
+    self.myData=myData
     
     t=os.path.isfile(self.file_name) #checking if file exists
     #print(t)
