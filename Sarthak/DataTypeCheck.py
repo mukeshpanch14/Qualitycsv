@@ -21,7 +21,7 @@ class DataTypeCheck(object):
         try:
            t=dt.datetime.strptime(date, value)
            if key not in self.formats:
-            self.formats.append(key)
+            self.formats.append(key)  #change
            break
         except ValueError as err:
            self.data_format_err=1
